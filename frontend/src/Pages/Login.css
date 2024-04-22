@@ -1,0 +1,31 @@
+
+.Auth-form {
+    width: 420px;
+    box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.Auth-form-content {
+    padding-left: 12%;
+    padding-right: 12%;
+}
+
+.Auth-form-title {
+    margin-bottom: 1em;
+    color: rgb(34, 34, 34);
+}
+
+
+.btn{
+    margin-top: 28px;
+    width: 165px;
+    height: 60px;
+    border-radius: 10px;
+    background: rgb(88, 132, 224);
+    border: none;
+    color: #FFFFFF;
+    cursor: pointer;
+}

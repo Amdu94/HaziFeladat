@@ -21,6 +21,9 @@ const Menu = () => (
                 <li className="grow">
                     <Link to="/login">LOGIN</Link>
                 </li>
+                <li className="grow">
+                    <Link to="/statistics">STATISZTIKA</Link>
+                </li>
             </ul>
         </nav>
         <Outlet />

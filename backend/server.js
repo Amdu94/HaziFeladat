@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.get('/products', productController.getProducts);
 app.get('/users', userController.getUsers);
 app.post('/add-product', productController.addProduct);
-app.post('/add-user', userController.addUser);
+app.post('/login', userController.getUserByEmailAndPassword);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

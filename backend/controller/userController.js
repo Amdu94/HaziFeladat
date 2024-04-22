@@ -9,19 +9,24 @@ const getUsers = async (req, res, next) => {
     }
 
 }
-const addUser = async (req, res) => {
+const getUserByEmailAndPassword = async (req, res) => {
     const { email, password } = req.body;
     try {
-        const user = await userService.addUser(email, password);
-        res.status(201).json(user);
+        const user = await userService.getUserByEmailAndPassword(email, password);
+        if (user) {
+            res.status(200).json({ message: 'Successful login!' });
+        } else {
+            res.status(401).json({ message: 'Incorrect email address or password!' });
+        }
     } catch (error) {
-        res.status(400).send(error.message);
+        console.error('Error during login:', error);
+        res.status(500).json({ message: 'Server error' });
     }
 };
 
 const userController = {
     getUsers,
-    addUser,
+    getUserByEmailAndPassword
 };
 
 export default userController;

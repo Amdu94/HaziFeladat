@@ -1,4 +1,7 @@
-import { PrismaClient } from '@prisma/client';
+import {PrismaClient} from '@prisma/client';
+import dotenv from 'dotenv';
+dotenv.config();
+
 const prisma = new PrismaClient();
 
 const getUsers = async() => {
@@ -8,19 +11,23 @@ const getUsers = async() => {
         handlePrismaError('Error fetching user:', error);
     }
 }
-const addUser = async (email, password) => {
-    const existingUser = await prisma.user.findMany({}).then((users) =>
-        users.some((user) => user.email === email && user.password === password)
-    );
-    if (existingUser) {
-        throw new Error('The user already exists.');
+const getUserByEmailAndPassword = async (email, password) => {
+    try {
+        const existingUsers = await prisma.user.findMany({}).then((users) =>
+            users.some((user) => user.email === email && user.password === password)
+        );
+        if (existingUsers || ( process.env.USER_EMAIL === email && process.env.USER_PASSWORD === password)){
+            return true;
+        } else{
+            return false;
+        }
+    } catch (error) {
+        console.error('Error when querying the user:', error);
+        throw error;
     }
 
-    const newUser = await prisma.user.create({
-        data: { email, password }
-    });
-    return newUser;
 };
+
 
 function handlePrismaError(message, error) {
     console.error(message, error);
@@ -29,6 +36,6 @@ function handlePrismaError(message, error) {
 
 const userService = {
     getUsers,
-    addUser,
+    getUserByEmailAndPassword
 }
 export default userService;
