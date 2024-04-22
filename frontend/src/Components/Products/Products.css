@@ -1,0 +1,34 @@
+.products-container {
+    padding: 1rem;
+}
+
+.product-card {
+    width: 18rem;
+    margin-bottom: 1rem;
+}
+
+.product-img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.product-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-price {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.products-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-button {
+    background-color: #007bff;
+    color: white;
+}
