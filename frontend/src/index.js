@@ -4,7 +4,7 @@ import reportWebVitals from './reportWebVitals.js';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./Components/ErrorPage/ErrorPage.jsx";
 import Menu from "./Components/Menu/Menu.jsx";
-import ProductForm from "./Pages/Index.jsx";
+import Index from "./Pages/Index.jsx";
 
 const router = createBrowserRouter([
     {
@@ -13,8 +13,8 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
             {
-                path: "/products",
-                element: <ProductForm />,
+                path: "/",
+                element: <Index />,
             },
         ],
     },

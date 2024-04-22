@@ -19,7 +19,7 @@ const Menu = () => (
                     <Link to="/">HOME</Link>
                 </li>
                 <li className="grow">
-                    <Link to="/matches">LOGIN</Link>
+                    <Link to="/login">LOGIN</Link>
                 </li>
             </ul>
         </nav>
