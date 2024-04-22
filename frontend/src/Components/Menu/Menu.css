@@ -1,0 +1,36 @@
+.Menu nav {
+    width: 100%; /* Ensure the nav takes full width */
+    display: flex;
+    flex-direction: column; /* Stack the ul elements vertically */
+    align-items: center; /* Center align the content vertically */
+    justify-content: center; /* Center align the content horizontally */
+}
+
+.Menu nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center; /* Center the list items horizontally */
+    align-items: center;
+    padding: 1rem;
+    background-color: rgb(88, 132, 224);
+    color: white;
+    font-size: 1.5rem;
+    width: 100%; /* Full width to center content properly */
+}
+
+.Menu nav ul li {
+    margin-right: 20px;
+    align-items: center; /* Center align the content vertically */
+    justify-content: center;
+    color: white;
+}
+
+.Menu nav ul li a {
+    color: white; /* Set the link color to white */
+    text-decoration: none;
+    font-family: Arial/* Remove the underline from the links */
+}
+
+.Menu nav ul li a:hover {
+    text-decoration: underline; /* Add underline on hover */
+}
