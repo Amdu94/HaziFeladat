@@ -8,9 +8,26 @@ const Login = (props) => {
 
     const navigate = useNavigate()
 
-    const onButtonClick = () => {
-        // You'll update this function later...
-    }
+    const onButtonClick = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password })
+            });
+            if (response.status === 200) {
+                navigate('/products');
+            } else {
+                console.error('Incorrect email address or password!');
+            }
+        } catch (error) {
+            console.error('Error during login:', error);
+        }
+    };
+
 
 
     return (
@@ -36,7 +53,7 @@ const Login = (props) => {
                         />
                     </div>
                     <div className="d-grid gap-2 mt-3">
-                        <button type="submit" className="btn btn-primary">
+                        <button type="submit" className="btn btn-primary" onClick={onButtonClick}>
                             Login
                         </button>
                     </div>

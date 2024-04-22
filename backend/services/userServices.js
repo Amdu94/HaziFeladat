@@ -1,4 +1,5 @@
-import { PrismaClient } from '@prisma/client';
+import {PrismaClient} from '@prisma/client';
+
 const prisma = new PrismaClient();
 
 const getUsers = async() => {
@@ -8,19 +9,18 @@ const getUsers = async() => {
         handlePrismaError('Error fetching user:', error);
     }
 }
-const addUser = async (email, password) => {
-    const existingUser = await prisma.user.findMany({}).then((users) =>
-        users.some((user) => user.email === email && user.password === password)
-    );
-    if (existingUser) {
-        throw new Error('The user already exists.');
+const getUserByEmailAndPassword = async (email, password) => {
+    try {
+        return await prisma.user.findMany({}).then((users) =>
+            users.some((user) => user.email === email && user.password === password)
+        );
+    } catch (error) {
+        console.error('Hiba a felhasználó lekérdezésekor:', error);
+        throw error;
     }
 
-    const newUser = await prisma.user.create({
-        data: { email, password }
-    });
-    return newUser;
 };
+
 
 function handlePrismaError(message, error) {
     console.error(message, error);
@@ -29,6 +29,6 @@ function handlePrismaError(message, error) {
 
 const userService = {
     getUsers,
-    addUser,
+    getUserByEmailAndPassword
 }
 export default userService;
