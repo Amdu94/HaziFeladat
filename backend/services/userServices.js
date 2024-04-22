@@ -1,4 +1,6 @@
 import {PrismaClient} from '@prisma/client';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const prisma = new PrismaClient();
 
@@ -11,11 +13,16 @@ const getUsers = async() => {
 }
 const getUserByEmailAndPassword = async (email, password) => {
     try {
-        return await prisma.user.findMany({}).then((users) =>
+        const existingUsers = await prisma.user.findMany({}).then((users) =>
             users.some((user) => user.email === email && user.password === password)
         );
+        if (existingUsers || ( process.env.USER_EMAIL === email && process.env.USER_PASSWORD === password)){
+            return true;
+        } else{
+            return false;
+        }
     } catch (error) {
-        console.error('Hiba a felhasználó lekérdezésekor:', error);
+        console.error('Error when querying the user:', error);
         throw error;
     }
 

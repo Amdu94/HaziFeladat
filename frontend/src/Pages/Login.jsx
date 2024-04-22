@@ -19,7 +19,7 @@ const Login = (props) => {
                 body: JSON.stringify({ email, password })
             });
             if (response.status === 200) {
-                navigate('/products');
+                navigate('/product-creator');
             } else {
                 console.error('Incorrect email address or password!');
             }
